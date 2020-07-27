@@ -1,0 +1,10 @@
+<DB>
+
+Model? 
+Schema 를 감싸주는 역할
+
+
+Schema?
+하나하나의 정보들의 타입, +a를 지정해주는 것
+
+models/User.js   // User의 Schema 를 지정해주고 export 해준다.
