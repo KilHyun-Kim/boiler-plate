@@ -12,3 +12,77 @@ models/User.js   // User의 Schema 를 지정해주고 export 해준다.
 
 body-parser ? 클라이언트에서 오는 정보를 서버에서 분석해서 가져올 수 있게 해줌
 
+
+서버 개발 편하게 하기위해서 nodemon 사용하기
+ - npm install nodemon --save-dev
+
+DB 주소 및 비밀번호 정보 숨기기 위해서
+
+config 폴더 생성 
+dev 환경에서 사용할 값 / produce 환경에서 사용할 값 다르게 보여주기 - key.js
+
+dev.js / prod.js 를 나누어서 상황에 맞게 보여주기
+
+index.js에서 mongoDB의 주소값을 config key.js 로 바꿔줌
+
+
+10=> 비밀번호 암호화하여 관리하기
+ - npm install bcrypt --save 
+
+
+
+login 기능 제작하기
+
+1. 요청된 이메일을 데이터베이스에서 있는지 찾는다.
+    - mongoDB의 메소드를 활용하여(findOne), DB에 값이 있는지 확인한다.
+    - 조건문을 걸어줘서 user값이 없을 경우에 loginSuccess 값과 message 를 return 해준다. 
+
+2. 요청된 이메일이 데이터 베이스에 있다면 비밀번호가 맞는 비밀번호 인지 확인.
+    - 메소드를 만들어서(comparePassword), isMatch값을 callBack 받는다. 
+    - User.js 에서 입력받은 plainPassword 값과 암호화된 값을 비교하기 위하여 plainPassword 값을 암호화 시켜서 비교한다. 
+    - 그렇게 콜백함수로 isMatch 값을 리턴해주고 err 가 있을시 err를 반환 한다.
+
+3. 비밀번호가 맞다면 토큰을 생성하기
+    * npm install jsonwebtoken --save (토큰 생성 라이브러리)
+    * npm install cookie-parser --save (쿠키에 저장하기)
+
+
+
+auth 기능 제작하기
+ - login 여부에 따라서 보여주는 페이지 다르게 규정하는 Auth 기능
+ - admin 의 페이지도 가능함.
+
+
+=> 원리? 쿠키에 담겨져있는 Token 을 전달하여 Token을 Decode 하여 기존의 Token을 비교한후 user_id가 있다면
+인증이 맞다라고 판단하여 페이지로 이동시켜줄 수 있다.
+********* 다시 쭉보기
+
+
+로그아웃 기능 제작
+
+-----------------------------------------------------------------------
+
+
+Front Part
+
+(React)
+
+1. CRA? Babel , Webpack 을 설정해줘야하기때문에 시간이 오래 걸렸다 
+But CRA를 활용하면서 시간을 축소할 수 있다.
+
+2. npm vs npx ? 
+ 1) npm : library들을 담고있는 역할
+          application 배포시 파일 빌드 시 사용
+          local로 설치 시 nodemodule 안에 저장
+          global로 설치 시 컴퓨터 안에 저장 -g 
+
+ 2) npx : npx 를 사용하면 npm registry 에서 create-react-app 을 찾아서
+          다운로드 없이 실행 시켜줌
+          - Disk Space 를 낭비X
+          - 항상 최신 버전을 사용할 수 있다.
+
+
+HOC? HigherOrderComponent , 해당 유저가 해당 페이지에 들어갈 자격이
+있는지를 알아 낸 후에 
+자격이 될경우 component로 이동하고, 
+자격이 안될경우 다른 페이지로 보내버릴 수 있게 하는 페이지
