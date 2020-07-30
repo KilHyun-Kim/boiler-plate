@@ -86,3 +86,100 @@ HOC? HigherOrderComponent , 해당 유저가 해당 페이지에 들어갈 자�
 있는지를 알아 낸 후에 
 자격이 될경우 component로 이동하고, 
 자격이 안될경우 다른 페이지로 보내버릴 수 있게 하는 페이지
+
+
+2. React Router DOM
+npm install react-router-dom --save
+
+App.js 에서 Router 관리한다
+    <Router>
+      <div>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/register" component={RegisterPage} />
+        </Switch>
+      </div>
+    </Router>
+
+3. Flow & Axios
+
+Axios : React 부분에서 Request 를 서버에 보내기 위해 사용하는 것
+ - npm install axios --save
+
+CORS 이슈 ? CORS 정책이 존재하는 경우 다른곳에서 정보를 보낼경우 보안이 취약하기때문에 있는 정책
+Cross-Origin-Resource-Sharing
+
+
+Proxy 설정 ? 
+ - npm install http-proxy-middleware --save
+ - setUpProxy.js 
+ 
+ - 방화벽 기능
+ - 웹 필터 기능
+ - 캐쉬 데이터, 공유 데이터 제공 기능
+
+사용이유? 
+ - 회사에서 직원들이나 집안에서 아이들 인터넷  사용 제어
+ - 캐쉬를 이요해 더 빠른 인터넷 이용 제공
+ - 더 나은 보안 제공
+ - 이용 제한된 사이트 접근 가능
+
+
+Concurrently 를 활용하여 두개의 서버 한번에 켜기
+ - npm install concurrently --save
+ - package.json 에 script에 설정하여 두개의 서버를 한번에 사용할 수 있게만듬
+
+CSS FrameWork !
+ - Material UI ( 진입장벽이 좀 있다 )
+ - React Bootstrap
+ - Semantic UI
+ - Ant Design
+ - Materiallize
+
+여기서는 Ant design 사용!
+ - 단점( 사이즈가 크다 )
+ - 장점( 스타일이 깔끔하다, 쓰기가 편하다 )
+
+ https://ant.design
+
+ npm install antd
+
+
+--------------------------------------------------------------------
+
+Redux 
+
+npm install redux react-redux redux-promise redux-thunk --save
+
+미들웨어를 사용하는 이유?
+redux dispatch 의경우 기본적으로 object만을 받음
+redux-thunk 의 경우에서는 redux dispatch 에게 Function을 받는 방법을 알려줌
+redux-pomise의 경우 redux dispatch에게 Promise를 받는 방법을 알려줌
+
+설정하는거 참고하기 
+
+----------------------------------------------------------------
+
+React vs React Hooks
+
+React                       Hooks(16.8v)
+
+Class Component             Functional Component
+Provide more features       Provide less features
+Longer Code                 Shorter Code
+More Complex Code           Simpler Code
+Slower Performance          Faster Performance
+
+
+Login Page 제작하기
+
+Register Page 제작하기
+
+Logout 제작
+
+
+Auth 에 대한 HOC 
+ - 다른 컴포넌트를 받은 다음 새로운 컴포넌트를 리턴해준다.
+ - 해당 유저가 해당 페이지에 들어갈 자격이 되는지 알아낸 후 자격이 된다면 페이지로 가게해주고 아니라면 다른페이지로 보냄
+ 
